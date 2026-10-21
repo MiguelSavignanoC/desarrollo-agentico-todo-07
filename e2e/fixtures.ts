@@ -3,7 +3,7 @@ import pg from 'pg';
 
 export { expect };
 
-type Task = { title: string; completed?: boolean };
+type Task = { title: string; completed?: boolean; dueDate?: string };
 
 type Fixtures = {
   // Deja la tabla con exactamente estas tareas, en este orden de creación.
@@ -32,9 +32,9 @@ export const test = base.extend<Fixtures>({
       await db.query('DELETE FROM tasks');
       for (const [i, task] of tasks.entries()) {
         await db.query(
-          `INSERT INTO tasks (id, title, completed, created_at, updated_at)
-           VALUES (gen_random_uuid(), $1, $2, now() + $3 * interval '1 millisecond', now())`,
-          [task.title, task.completed ?? false, i],
+          `INSERT INTO tasks (id, title, completed, due_date, created_at, updated_at)
+           VALUES (gen_random_uuid(), $1, $2, $4, now() + $3 * interval '1 millisecond', now())`,
+          [task.title, task.completed ?? false, i, task.dueDate ?? null],
         );
       }
     });
