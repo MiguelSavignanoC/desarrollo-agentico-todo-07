@@ -18,3 +18,9 @@ Un documento de cierre cuenta qué pasó en su caso, y no se reescribe cuando ot
 Entre tres y cinco condiciones por documento, y las entradas en orden por número de issue. Si un documento ya tiene entrada, se actualizan sus condiciones en lugar de añadir otra.
 
 ## Índice
+
+- [feature-1-fecha-limite-tareas.md](feature-1-fecha-limite-tareas.md): fecha límite opcional en las tareas, al crear y editar, visible en la lista
+  - Cuando se trabaje con `models/task.go`, `actions/tasks.go` o los formularios de `templates/tasks/`
+  - Cuando se modifique la columna `tasks.due_date` o se añada otro campo a `Task` que pase por `taskForm`
+  - Cuando se añada vencimiento, orden, filtro o recordatorio basado en la fecha de una tarea
+  - Cuando se investigue una fecha que sale desplazada un día o un error de validación que marca el campo equivocado
